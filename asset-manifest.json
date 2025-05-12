@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/HachemdevPortfolio/static/css/main.633a8872.css",
-    "main.js": "/HachemdevPortfolio/static/js/main.53fab048.js",
+    "main.js": "/HachemdevPortfolio/static/js/main.01d6f318.js",
     "index.html": "/HachemdevPortfolio/index.html",
     "main.633a8872.css.map": "/HachemdevPortfolio/static/css/main.633a8872.css.map",
-    "main.53fab048.js.map": "/HachemdevPortfolio/static/js/main.53fab048.js.map"
+    "main.01d6f318.js.map": "/HachemdevPortfolio/static/js/main.01d6f318.js.map"
   },
   "entrypoints": [
     "static/css/main.633a8872.css",
-    "static/js/main.53fab048.js"
+    "static/js/main.01d6f318.js"
   ]
 }
