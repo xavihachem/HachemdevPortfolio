@@ -136,12 +136,12 @@ const Hero = () => {
     };
     
     // Create multiple layers of stars with different characteristics for a more majestic look
-    // All star sizes reduced by 80%
-    const starField1 = createStarField(1500, 0.016, 10, [0.8, 1.0]); // Distant tiny stars (background layer) - 80% smaller
-    const starField2 = createStarField(800, 0.03, 8, [0.7, 1.0]);   // Small stars - 80% smaller
-    const starField3 = createStarField(300, 0.05, 6, [0.6, 1.0]);   // Medium stars - 80% smaller
-    const starField4 = createStarField(100, 0.08, 4, [0.5, 1.0]);   // Large stars - 80% smaller
-    const starField5 = createStarField(30, 0.12, 3, [0.4, 1.0]);    // Bright foreground stars - 80% smaller
+    // All star sizes significantly reduced with more uniform sizing
+    const starField1 = createStarField(1500, 0.012, 10, [0.8, 1.0]); // Distant tiny stars (background layer)
+    const starField2 = createStarField(800, 0.018, 8, [0.7, 1.0]);   // Small stars
+    const starField3 = createStarField(300, 0.025, 6, [0.6, 1.0]);   // Medium stars
+    const starField4 = createStarField(100, 0.035, 4, [0.5, 1.0]);   // Large stars
+    const starField5 = createStarField(30, 0.045, 3, [0.4, 1.0]);    // Bright foreground stars
     
     scene.add(starField1);
     scene.add(starField2);
@@ -263,40 +263,39 @@ const Hero = () => {
             <div className="absolute -top-20 -left-20 w-40 h-40 bg-primary-500/5 dark:bg-primary-500/10 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-secondary-500/5 dark:bg-secondary-500/10 rounded-full blur-3xl"></div>
             
-            {/* Animated badge */}
-            <motion.div
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-block mb-4"
-            >
-              <div className="relative inline-flex items-center px-4 py-2 rounded-full bg-primary-50 dark:bg-primary-900/30 overflow-hidden">
-                <motion.span 
-                  className="absolute inset-0 bg-gradient-to-r from-primary-500/20 via-secondary-500/20 to-primary-500/20 dark:from-primary-500/30 dark:via-secondary-500/30 dark:to-primary-500/30 rounded-full"
-                  animate={{ x: ["-100%", "100%"] }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity,
-                    ease: "easeInOut" 
-                  }}
-                />
-                <span className="relative z-10 font-display font-bold text-xl text-primary-600 dark:text-primary-400">
+            {/* Redesigned intro section with cohesive styling */}
+            <div className="relative mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-2"
+              >
+                <div className="inline-flex items-center">
                   <motion.span
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="inline-block mr-2"
+                    animate={{ rotate: [0, 10, 0, -10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="inline-block mr-3 text-3xl md:text-4xl"
                   >
                     👋
                   </motion.span>
-                  Hello, I'm
-                </span>
-              </div>
-            </motion.div>
-            
-            {/* Main name with fancy 3D effect */}
-            <div className="relative mb-6">
+                  <div className="relative">
+                    <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-200">
+                      Hello, I'm
+                    </h2>
+                    <motion.div 
+                      className="absolute -bottom-1 left-0 h-[3px] bg-gradient-to-r from-primary-500 via-secondary-500 to-primary-500 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: '100%' }}
+                      transition={{ duration: 0.8, delay: 0.3 }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+              
+              {/* Main name with fancy 3D effect - now more cohesive with intro */}
               <motion.h1 
-                className="font-display text-6xl md:text-7xl lg:text-8xl font-black tracking-tight"
+                className="font-display text-6xl md:text-7xl lg:text-8xl font-black tracking-tight relative"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -307,20 +306,31 @@ const Hero = () => {
                     Hachem
                   </span>
                   
-                  {/* Text shadow effect */}
-                  <span className="absolute -bottom-1.5 left-0.5 z-0 text-primary-300/20 dark:text-primary-700/20 select-none blur-[2px]">
+                  {/* Enhanced text shadow effect */}
+                  <span className="absolute -bottom-2 left-1 z-0 text-primary-300/20 dark:text-primary-700/20 select-none blur-[3px]">
                     Hachem
                   </span>
                 </span>
+                
+                {/* Animated shine effect */}
+                <motion.div 
+                  className="absolute inset-0 w-full h-full overflow-hidden z-20 pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                >
+                  <motion.div
+                    className="absolute top-0 -left-[100%] h-full w-[50%] bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12"
+                    animate={{ left: '200%' }}
+                    transition={{ 
+                      duration: 2.5, 
+                      repeat: Infinity, 
+                      repeatDelay: 5,
+                      ease: "easeInOut" 
+                    }}
+                  />
+                </motion.div>
               </motion.h1>
-              
-              {/* Animated underline */}
-              <motion.div 
-                className="h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-primary-500 rounded-full w-3/4 mt-2"
-                initial={{ scaleX: 0, originX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              />
             </div>
             
             {/* Animated role with enhanced styling */}
